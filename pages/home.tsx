@@ -14,10 +14,13 @@ const HomeWrapper: NextPage<{setLoggedIn(val: boolean): void}> = (props) => {
 
   function handleCheck(index: number) {
     const updatedItems: ItemBaseProps[] = items.map((item, currentIndex) => {
+      const updatedItem = {...item}
+
       if (index === currentIndex) {
-        item.checked = !item.checked
+        updatedItem.checked = !item.checked
       }
-      return item
+
+      return updatedItem
     })
     setItems(updatedItems)
   }
