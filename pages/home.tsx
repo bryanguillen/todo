@@ -13,7 +13,10 @@ const HomeWrapper: NextPage<{authenticationData: { username: string; loggedIn: b
   const router = useRouter()
 
   const [todoListInput, setTodoListInput] = useState('')
-  const [items, setItems] = useState<ItemBaseProps[]>([])
+  const [items, setItems] = useState<ItemBaseProps[]>([
+    { checked: false, title: 'Cookies', name: 'item-0' },
+    { checked: true, title: 'Apples', name: 'item-1' }
+  ])
 
   const { loggedIn, username } = props.authenticationData
 
