@@ -2,11 +2,21 @@ import React from 'react'
 
 import itemStyles from './Item.module.css'
 
-interface ItemProps {
+/**
+ * Used for array passed into parent component;
+ * this is due to the implementation for handler.
+ */
+export interface ItemBaseProps {
   checked: boolean
   name: string
-  onCheck: (event: React.ChangeEvent<HTMLInputElement>) => void
   title: string
+}
+
+/**
+ * Used to define actual props for component
+ */
+interface ItemProps extends ItemBaseProps {
+  onCheck: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 /**
