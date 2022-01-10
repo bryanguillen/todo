@@ -17,6 +17,7 @@ const TodoList = (props: TodoListProps) => {
       <div className={todoListStyles['items-container']}>
         {props.items.map((item, index) => (
           <Item
+            key={item.name}
             checked={item.checked}
             name={item.name}
             onCheck={() => props.handleCheck(index)}
