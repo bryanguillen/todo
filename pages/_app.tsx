@@ -7,15 +7,19 @@ function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter()
 
   const [loggedIn, setLoggedIn] = useState(false)
+  const [authenticationData, setAuthenticationData] = useState({
+    loggedIn: false,
+    username: ''
+  })
 
   useEffect(() => {
-    if (loggedIn) {
+    if (authenticationData.loggedIn) {
       router.push('/home')
     }
-  }, [loggedIn])
+  }, [authenticationData])
 
   return (
-    <Component {...pageProps} loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
+    <Component {...pageProps} authenticationData={authenticationData} setAuthenticationData={setAuthenticationData}/>
   )
 }
 
