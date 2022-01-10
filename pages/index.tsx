@@ -9,6 +9,10 @@ const LoginWrapper: NextPage<{setLoggedIn(val: boolean): void}> = (props) => {
     username: '',
     password: ''
   })
+  const [error, setError] = useState({
+    exists: false,
+    text: 'Oops!  Make sure you include correct credentials.'
+  })
 
   function onChange(e: any) {
     setFormValues(previousState => ({ ...previousState, [e.target.name]: e.target.value }))
@@ -20,7 +24,10 @@ const LoginWrapper: NextPage<{setLoggedIn(val: boolean): void}> = (props) => {
     const { username, password } = formValues
     
     if (username.trim() === 'user@test.com' && password.trim() === 'password') {
+      setError(previousState => ({ ...previousState, exists: false }))
       props.setLoggedIn(true)
+    } else {
+      setError(previousState => ({ ...previousState, exists: true }))
     }
   }
 
@@ -34,6 +41,7 @@ const LoginWrapper: NextPage<{setLoggedIn(val: boolean): void}> = (props) => {
 
       <Login
         buttonText="Login"
+        errorConfig={error}
         onChange={onChange}
         onSubmit={onSubmit}
         labels={{

@@ -9,6 +9,10 @@ import loginStyles from './Login.module.css'
 
 interface LoginProps {
   buttonText: string
+  errorConfig: {
+    exists: boolean
+    text: string
+  }
   onChange: (e: React.FormEvent<HTMLInputElement>) => void
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void
   labels: {
@@ -25,6 +29,12 @@ const Login = (props: LoginProps) => {
   return (
     <div className={loginStyles.base}>
       <Form className={loginStyles.form} onSubmit={props.onSubmit}>
+        {props.errorConfig.exists ?
+          <div className={loginStyles['control-container']}>
+            <p className={loginStyles.error}>{props.errorConfig.text}</p>
+          </div> :
+          null
+        }
         <div className={loginStyles['control-container']}>
           <Label htmlFor="username">{props.labels.username}</Label>
           <TextInput className={loginStyles.input} type="text" onChange={props.onChange} value={props.values.username} name="username" id="username"/>
