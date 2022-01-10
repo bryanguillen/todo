@@ -5,7 +5,7 @@ import labelStyles from './Label.module.css'
 /**
  * Label component used as a wrapper to add base styles.
  */
-const PrimaryButton: React.FC = (props: React.HTMLAttributes<HTMLElement>) => {
+const Label: React.FC<React.HTMLProps<HTMLLabelElement>> = (props) => {
   const { children, ...rest } = props
 
   return (
@@ -13,4 +13,4 @@ const PrimaryButton: React.FC = (props: React.HTMLAttributes<HTMLElement>) => {
   )
 }
 
-export default PrimaryButton
+export default Label
