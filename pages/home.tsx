@@ -6,14 +6,16 @@ import { useRouter } from 'next/dist/client/router'
 import { ItemBaseProps } from '../components/home/todo-list/item/Item'
 import Home from '../components/home/Home'
 
-const HomeWrapper: NextPage<{loggedIn: boolean; setLoggedIn(val: boolean): void}> = (props) => {
+const HomeWrapper: NextPage<{authenticationData: { username: string; loggedIn: boolean }; setAuthenticationData(data: { username: string; loggedIn: boolean }): void}> = (props) => {
   const router = useRouter()
 
   const [todoListInput, setTodoListInput] = useState('')
   const [items, setItems] = useState<ItemBaseProps[]>([])
 
+  const { loggedIn, username } = props.authenticationData
+
   useEffect(() => {
-    if (!props.loggedIn) {
+    if (!loggedIn) {
       router.push('/')
     }
   }, [])
@@ -45,7 +47,7 @@ const HomeWrapper: NextPage<{loggedIn: boolean; setLoggedIn(val: boolean): void}
   }
 
   return (
-    props.loggedIn ?
+    loggedIn ?
       <section>
         <Head>
           <title>Todo App - Home</title>
@@ -70,11 +72,11 @@ const HomeWrapper: NextPage<{loggedIn: boolean; setLoggedIn(val: boolean): void}
           navigationButtons={{
             home: { text: 'Home', onClick: () => router.push('/home') },
             logout: { text: 'Logout', onClick: () =>  {
-              props.setLoggedIn(false)
+              props.setAuthenticationData({ username: '', loggedIn: false })
               router.push('/')
             }}
           }}
-          userEmail="user@test.com"
+          userEmail={username}
         />
       </section> :
       <div>redirecting....</div>

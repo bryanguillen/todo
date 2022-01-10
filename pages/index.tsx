@@ -4,7 +4,7 @@ import Head from 'next/head'
 
 import Login from '../components/login/Login'
 
-const LoginWrapper: NextPage<{setLoggedIn(val: boolean): void}> = (props) => {
+const LoginWrapper: NextPage<{setAuthenticationData(data: { username: string; loggedIn: boolean }): void}> = (props) => {
   const [formValues, setFormValues] = useState({
     username: '',
     password: ''
@@ -21,11 +21,12 @@ const LoginWrapper: NextPage<{setLoggedIn(val: boolean): void}> = (props) => {
   function onSubmit(e: FormEvent) {
     e.preventDefault()
     
+    const USERNAME = 'user@test.com'
     const { username, password } = formValues
     
-    if (username.trim() === 'user@test.com' && password.trim() === 'password') {
+    if (username.trim() === USERNAME && password.trim() === 'password') {
       setError(previousState => ({ ...previousState, exists: false }))
-      props.setLoggedIn(true)
+      props.setAuthenticationData(({ loggedIn: true, username: USERNAME }))
     } else {
       setError(previousState => ({ ...previousState, exists: true }))
     }
