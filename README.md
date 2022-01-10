@@ -8,12 +8,12 @@ Simple TODO app implemented using Next, React, and Typescript.
 
 It's a mock and very simplistic application that contains the following:
 
-* `/` route:
+* `/login` Login route:
   * Login page
   * Only 1 set of credentials work:
     * username: user@test.com 
     * password: password
-* `/home` route:
+* `/` Home route:
   * Main page of app
   * Must be logged in to access
   * Allows user to:
