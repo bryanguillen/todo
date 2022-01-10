@@ -10,7 +10,7 @@ const WelcomeMessage = ({
   userEmail
 }: WelcomeMessageProps) => {
   return (
-    <h1 className={`${welcomeMessageStyles.base}`}>Welcome ${userEmail}!</h1>
+    <h1 className={`${welcomeMessageStyles.base}`}>{`Welcome ${userEmail}`!}</h1>
   )
 }
 
