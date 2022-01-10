@@ -5,7 +5,7 @@ import Label from '../shared/label/Label'
 import PrimaryButton from '../shared/primary-button/PrimaryButton'
 import Navigation from './navigation/Navigation'
 import TextInput from '../shared/text-input/TextInput'
-import WelcomeMessage from '../shared/welcome-message/WelcomeMessage'
+import WelcomeMessage from './welcome-message/WelcomeMessage'
 
 import homeStyles from './Home.module.css'
 import TodoList from './todo-list/TodoList'
