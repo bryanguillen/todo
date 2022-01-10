@@ -1,73 +1,52 @@
 import React, { FormEvent, useState } from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import { useRouter } from 'next/dist/client/router'
 
-import { ItemBaseProps } from '../components/home/todo-list/item/Item'
-import Home from '../components/home/Home'
+import Login from '../components/login/Login'
 
-const HomeWrapper: NextPage = () => {
-  const router = useRouter()
+const LoginWrapper: NextPage<{setLoggedIn(val: boolean): void}> = (props) => {
+  const [formValues, setFormValues] = useState({
+    username: '',
+    password: ''
+  })
 
-  const [todoListInput, setTodoListInput] = useState('')
-  const [items, setItems] = useState<ItemBaseProps[]>([])
-
-  function handleCheck(index: number) {
-    const updatedItems: ItemBaseProps[] = items.map((item, currentIndex) => {
-      if (index === currentIndex) {
-        item.checked = !item.checked
-      }
-      return item
-    })
-    setItems(updatedItems)
+  function onChange(e: any) {
+    setFormValues(previousState => ({ ...previousState, [e.target.name]: e.target.value }))
   }
 
-  function onSubmit(event: FormEvent) {
-    event.preventDefault()
+  function onSubmit(e: FormEvent) {
+    e.preventDefault()
     
-    if (todoListInput.trim() !== '') {
-      setItems(previousState => [{ checked: false, title: todoListInput, name: getNameForItem() }, ...previousState])
-      setTodoListInput('')
+    const { username, password } = formValues
+    
+    if (username.trim() === 'user@test.com' && password.trim() === 'password') {
+      props.setLoggedIn(true)
     }
-  }
-
-  function getNameForItem() {
-    return `item-${items.length}`
   }
 
   return (
     <section>
       <Head>
-        <title>Todo App - Home</title>
-        <meta name="description" content="Home page for todo app." />
+        <title>Todo App - Login</title>
+        <meta name="description" content="Login page for todo app." />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Home
-        formConfig={{
-          buttonText: 'Submit',
-          label: 'Add New Item:',
-          onChange: (event: any) => setTodoListInput(event.currentTarget.value),
-          onSubmit,
-          placeholder: 'Example: Carrots',
-          value: todoListInput
+      <Login
+        buttonText="Login"
+        onChange={onChange}
+        onSubmit={onSubmit}
+        labels={{
+          password: "Password",
+          username: "Email",
         }}
-        itemsConfig={{
-          handleCheck,
-          items,
-          title: 'Your Items:'
+        values={{
+          password: formValues.password,
+          username: formValues.username
         }}
-        navigationButtons={{
-          home: { text: 'Home', onClick: () => router.push('/') },
-          logout: { text: 'Logout', onClick: () =>  {
-            // clear some state
-            router.push('/login')
-          }}
-        }}
-        userEmail="user@test.com"
       />
     </section>
   )
 }
 
-export default HomeWrapper
+export default LoginWrapper
