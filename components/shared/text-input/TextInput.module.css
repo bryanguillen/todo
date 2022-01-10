@@ -1,0 +1,6 @@
+.base {
+  border: 2px solid #efeef6;
+  border-radius: 10px;
+  min-width: 50px;
+  padding: 5px;
+}
