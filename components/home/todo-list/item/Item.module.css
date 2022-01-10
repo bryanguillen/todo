@@ -1,0 +1,24 @@
+.base {
+  align-items: center;
+  display: flex;
+}
+
+.checkbox {
+  flex-shrink: 0;
+}
+
+.label {
+  color: #1c2081;
+  flex: 1;
+  font-size: 16px;
+  margin-left: 5px;
+}
+
+.label-checked {
+  text-decoration: line-through;
+}
+
+.checkbox,
+.label {
+  cursor: pointer;
+}
