@@ -1,8 +1,8 @@
-import React from 'react'
+import React, { ButtonHTMLAttributes } from 'react'
 
 import buttonStyles from './PrimaryButton.module.css'
 
-interface PrimaryButtonProps extends React.HTMLAttributes<HTMLElement> {
+interface PrimaryButtonProps extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>, React.AriaAttributes  {
   text: string
 }
 
@@ -10,7 +10,7 @@ interface PrimaryButtonProps extends React.HTMLAttributes<HTMLElement> {
  * Primary button component used as a wrapper to add base primary button styles and
  * use text prop as interface.
  */
-const PrimaryButton = (props: PrimaryButtonProps) => {
+const PrimaryButton: React.FC<PrimaryButtonProps> = (props) => {
   const { text, className, ...rest } = props
 
   return (
