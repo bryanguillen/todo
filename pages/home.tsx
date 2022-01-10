@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from 'react'
+import React, { FormEvent, useState, useEffect } from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/dist/client/router'
@@ -6,11 +6,17 @@ import { useRouter } from 'next/dist/client/router'
 import { ItemBaseProps } from '../components/home/todo-list/item/Item'
 import Home from '../components/home/Home'
 
-const HomeWrapper: NextPage<{setLoggedIn(val: boolean): void}> = (props) => {
+const HomeWrapper: NextPage<{loggedIn: boolean; setLoggedIn(val: boolean): void}> = (props) => {
   const router = useRouter()
 
   const [todoListInput, setTodoListInput] = useState('')
   const [items, setItems] = useState<ItemBaseProps[]>([])
+
+  useEffect(() => {
+    if (!props.loggedIn) {
+      router.push('/')
+    }
+  }, [])
 
   function handleCheck(index: number) {
     const updatedItems: ItemBaseProps[] = items.map((item, currentIndex) => {
@@ -39,37 +45,39 @@ const HomeWrapper: NextPage<{setLoggedIn(val: boolean): void}> = (props) => {
   }
 
   return (
-    <section>
-      <Head>
-        <title>Todo App - Home</title>
-        <meta name="description" content="Home page for todo app." />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    props.loggedIn ?
+      <section>
+        <Head>
+          <title>Todo App - Home</title>
+          <meta name="description" content="Home page for todo app." />
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
 
-      <Home
-        formConfig={{
-          buttonText: 'Submit',
-          label: 'Add New Item:',
-          onChange: (event: any) => setTodoListInput(event.currentTarget.value),
-          onSubmit,
-          placeholder: 'Example: Carrots',
-          value: todoListInput
-        }}
-        itemsConfig={{
-          handleCheck,
-          items,
-          title: 'Your Items:'
-        }}
-        navigationButtons={{
-          home: { text: 'Home', onClick: () => router.push('/home') },
-          logout: { text: 'Logout', onClick: () =>  {
-            props.setLoggedIn(false)
-            router.push('/')
+        <Home
+          formConfig={{
+            buttonText: 'Submit',
+            label: 'Add New Item:',
+            onChange: (event: any) => setTodoListInput(event.currentTarget.value),
+            onSubmit,
+            placeholder: 'Example: Carrots',
+            value: todoListInput
           }}
-        }}
-        userEmail="user@test.com"
-      />
-    </section>
+          itemsConfig={{
+            handleCheck,
+            items,
+            title: 'Your Items:'
+          }}
+          navigationButtons={{
+            home: { text: 'Home', onClick: () => router.push('/home') },
+            logout: { text: 'Logout', onClick: () =>  {
+              props.setLoggedIn(false)
+              router.push('/')
+            }}
+          }}
+          userEmail="user@test.com"
+        />
+      </section> :
+      <div>redirecting....</div>
   )
 }
 
