@@ -45,3 +45,7 @@ You could also the see the stories by running: `npm run storybook`.
 
 * `./docs/assessment.md`
   * Brain dump for how I began assessing implementation for this mini-app
+* Browsers Tested
+  * Chrome
+  * Firefox
+  * Edge
