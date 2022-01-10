@@ -64,3 +64,28 @@ components - login:
   - text input (2x)
   - primary button (1)
 - header
+
+technical design - steps for execution
+Implement the following in order
+- component development
+  - form
+    - primary button [x]
+    - input [x]
+    - label [x]
+    - form [x]
+  - personalized welcome message [x]
+  - nav
+    - mobile [x]
+    - desktop [x]
+    - notes: reuse from previous apps i've done
+  - todo list container [x]
+    - title
+    - item
+      - checkbox
+      - title
+- page development
+  - putting it all together
+
+notes:
+- do not forget to add normalize.css
+- best font-sizes?
