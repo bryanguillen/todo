@@ -6,7 +6,6 @@ import { useRouter } from 'next/dist/client/router'
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter()
 
-  const [loggedIn, setLoggedIn] = useState(false)
   const [authenticationData, setAuthenticationData] = useState({
     loggedIn: false,
     username: ''
