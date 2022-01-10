@@ -1,4 +1,10 @@
 .base {
   color: #1c2081;
-  font-size: 48px;
+  font-size: 30px;
+}
+
+@media only screen and (min-width: 768px) {
+  .base {
+    font-size: 42px;
+  }
 }
