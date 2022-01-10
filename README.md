@@ -13,6 +13,7 @@ It's a mock and very simplistic application that contains the following:
   * Only 1 set of credentials work:
     * username: user@test.com 
     * password: password
+    * Note: Username must be lowercased
 * `/` Home route:
   * Main page of app
   * Must be logged in to access
