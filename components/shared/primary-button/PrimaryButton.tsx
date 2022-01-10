@@ -14,7 +14,7 @@ const PrimaryButton = (props: PrimaryButtonProps) => {
   const { text, className, ...rest } = props
 
   return (
-    <button {...rest} className={`${className} ${buttonStyles.base}`}>{text}</button>
+    <button {...rest} className={`${className ? className : ''} ${buttonStyles.base}`}>{text}</button>
   )
 }
 
