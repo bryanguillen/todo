@@ -20,7 +20,7 @@ function MyApp({ Component, pageProps }: AppProps) {
    */
   useEffect(() => {
     if (authenticationData.loggedIn) {
-      router.push('/home')
+      router.push('/')
     }
   }, [authenticationData])
 
