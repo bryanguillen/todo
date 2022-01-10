@@ -4,6 +4,9 @@ import Head from 'next/head'
 
 import Login from '../components/login/Login'
 
+/**
+ * Stateful component for logging in
+ */
 const LoginWrapper: NextPage<{setAuthenticationData(data: { username: string; loggedIn: boolean }): void}> = (props) => {
   const [formValues, setFormValues] = useState({
     username: '',
@@ -14,13 +17,22 @@ const LoginWrapper: NextPage<{setAuthenticationData(data: { username: string; lo
     text: 'Oops!  Make sure you include correct credentials.'
   })
 
+  /**
+   * @description Wrapper for handling on change for inputs
+   */
   function onChange(e: any) {
     setFormValues(previousState => ({ ...previousState, [e.target.name]: e.target.value }))
   }
 
+  /**
+   * @description Wrapper for handling on on submit
+   */
   function onSubmit(e: FormEvent) {
     e.preventDefault()
     
+    /**
+     * HACK: For now only assume that the following credentials are valid
+     */
     const USERNAME = 'user@test.com'
     const { username, password } = formValues
     

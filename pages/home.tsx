@@ -6,6 +6,9 @@ import { useRouter } from 'next/dist/client/router'
 import { ItemBaseProps } from '../components/home/todo-list/item/Item'
 import Home from '../components/home/Home'
 
+/**
+ * Stateful page component that invokes Home and passes props to it
+ */
 const HomeWrapper: NextPage<{authenticationData: { username: string; loggedIn: boolean }; setAuthenticationData(data: { username: string; loggedIn: boolean }): void}> = (props) => {
   const router = useRouter()
 
@@ -14,12 +17,20 @@ const HomeWrapper: NextPage<{authenticationData: { username: string; loggedIn: b
 
   const { loggedIn, username } = props.authenticationData
 
+  /**
+   * HACK: Re-route user to login page if they are not yet
+   * logged in.
+   */
   useEffect(() => {
     if (!loggedIn) {
       router.push('/')
     }
   }, [])
 
+  /**
+   * @description Function used to check off items
+   * @TODO Move this into a hook, since it is reused in TodoList stories
+   */
   function handleCheck(index: number) {
     const updatedItems: ItemBaseProps[] = items.map((item, currentIndex) => {
       const updatedItem = {...item}
@@ -33,17 +44,16 @@ const HomeWrapper: NextPage<{authenticationData: { username: string; loggedIn: b
     setItems(updatedItems)
   }
 
+  /**
+   * @description Event handler for adding a todo list item.
+   */
   function onSubmit(event: FormEvent) {
     event.preventDefault()
     
     if (todoListInput.trim() !== '') {
-      setItems(previousState => [{ checked: false, title: todoListInput, name: getNameForItem() }, ...previousState])
+      setItems(previousState => [{ checked: false, title: todoListInput, name: `item-${items.length}` }, ...previousState])
       setTodoListInput('')
     }
-  }
-
-  function getNameForItem() {
-    return `item-${items.length}`
   }
 
   return (

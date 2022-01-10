@@ -6,11 +6,18 @@ import { useRouter } from 'next/dist/client/router'
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter()
 
+  /**
+   * Shared state for pages/routes
+   */
   const [authenticationData, setAuthenticationData] = useState({
     loggedIn: false,
     username: ''
   })
 
+  /**
+   * Once authentication data is updated and user is logged in,
+   * go '/home'
+   */
   useEffect(() => {
     if (authenticationData.loggedIn) {
       router.push('/home')
