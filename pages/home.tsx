@@ -69,7 +69,7 @@ const HomeWrapper: NextPage<{authenticationData: { username: string; loggedIn: b
           formConfig={{
             buttonText: 'Submit',
             label: 'Add New Item:',
-            onChange: (event: any) => setTodoListInput(event.currentTarget.value),
+            onChange: (event: React.ChangeEvent<HTMLInputElement>) => setTodoListInput(event.target.value),
             onSubmit,
             placeholder: 'Example: Carrots',
             value: todoListInput

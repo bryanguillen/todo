@@ -19,7 +19,7 @@ interface NavigationButtonConfig {
 interface FormConfig {
   buttonText: string
   label: string
-  onChange: (e: React.FormEvent<HTMLInputElement>) => void
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void
   placeholder: string
   value: string

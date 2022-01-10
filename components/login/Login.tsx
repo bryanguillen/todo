@@ -13,7 +13,7 @@ interface LoginProps {
     exists: boolean
     text: string
   }
-  onChange: (e: React.FormEvent<HTMLInputElement>) => void
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void
   labels: {
     password: string

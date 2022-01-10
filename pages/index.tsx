@@ -20,7 +20,7 @@ const LoginWrapper: NextPage<{setAuthenticationData(data: { username: string; lo
   /**
    * @description Wrapper for handling on change for inputs
    */
-  function onChange(e: any) {
+  function onChange(e: React.ChangeEvent<HTMLInputElement>) {
     setFormValues(previousState => ({ ...previousState, [e.target.name]: e.target.value }))
   }
 
