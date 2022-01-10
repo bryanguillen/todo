@@ -1,5 +1,7 @@
 # TODO App
 
+For a live view, please click [here](https://elegant-perlman-fd3f82.netlify.app/).
+
 ## Description 
 
 Simple TODO app implemented using Next, React, and Typescript.
@@ -18,6 +20,7 @@ It's a mock and very simplistic application that contains the following:
     * Add new items
     * Toggle items' checked state
     * Logout via Logout Button
+  * **NOTE:** The implementation is currently a mock implementation in that, if you refresh while on the home page, you will lose the data and be "logged out".  Essentially, none of the data added to the todo list persists after session.
 
 ## High Level Technical Overview
 
